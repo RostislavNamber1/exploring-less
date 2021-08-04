@@ -8,12 +8,160 @@
   <body>
 
     <div class="conteiner">
-      <h1>Less</h1>
-      <p>Изучаем препроцессор Less. Переменные, миксины, функции, циклы</p>
-      <a href="https://lesscss.org/" target="_blank">Официальный сайт</a>
+      <div class="title-center">
+        <h1>Less</h1>
+        <p>Изучаем препроцессор Less. Переменные, миксины, функции, циклы</p>
+        <a href="https://lesscss.org/" target="_blank">Официальный сайт</a>
+      </div>
     </div>
     <section class="conteiner">
-      
+      <h2>Переменные</h2>
+      <p>Объявление переменных</p>
+      <div class="cod">
+        <code>
+<pre>
+@link-color: #000; 
+h1{
+  font-size: clamp(2rem, 8vw - 2rem, 5rem);
+  color: @link-color;
+}
+</pre>
+        </code>
+      </div>
+      <br>
+      <h2>Свойства как переменные</h2>
+      <p>Вы можете легко обрабатывать свойства как переменные, используя $propсинтаксис. Иногда это может сделать ваш код немного легче.</p>
+      <div class="cod">
+        <code>
+<pre>
+.widget {
+  color: #efefef;
+  background-color: $color;
+}
+</pre>
+        </code>
+      </div>
+      <p>Будет интерпритированно в этот код</p>
+      <div class="cod">
+        <code>
+<pre>
+.widget {
+  color: #efefef;
+  background-color: #efefef;
+}
+</pre>
+        </code>
+      </div>
+      <br>
+      <h2>Родительские селекторы</h2>
+      <p>Ссылка на родительские селекторы с помощью &
+
+        &Оператор представляет родительские селекторы с вложенным правило , и наиболее часто используется при применении класс модифицирующего или псевдо-класса к существующему селектору:</p>
+        <div class="cod">
+          <code>
+            <pre>
+a {
+  color: blue;
+  &:hover {
+    color: green;
+  }
+}
+</pre>
+          </code>
+        </div>
+        <p>Приведет к этому</p>
+        <div class="cod">
+          <code>
+<pre>
+a {
+  color: blue;
+}
+
+a:hover {
+  color: green;
+}
+</pre>
+          </code>
+        </div>
+        <p>Оператор «родительских селекторов» имеет множество применений. Практически в любое время, когда вам нужно, чтобы селекторы вложенных правил были объединены другими способами, кроме тех, которые используются по умолчанию. Например, другое типичное использование &- создание повторяющихся имен классов:</p>
+        <div class="cod">
+          <code>
+<pre>
+.button {
+  &-ok {
+    background-image: url("ok.png");
+  }
+  &-cancel {
+    background-image: url("cancel.png");
+  }
+
+  &-custom {
+    background-image: url("custom.png");
+  }
+}
+</pre>
+          </code>
+        </div>
+        <p>Будет таким</p>
+        <div class="cod">
+          <code>
+<pre>
+.button-ok {
+  background-image: url("ok.png");
+}
+.button-cancel {
+  background-image: url("cancel.png");
+}
+.button-custom {
+  background-image: url("custom.png");
+}
+</pre>
+          </code>
+        </div>
+        <h2>Несколько &</h2>
+        <p>&может появляться более одного раза в селекторе. Это позволяет многократно ссылаться на родительский селектор, не повторяя его имя.</p>
+        <div class="cod">
+          <code>
+<pre>
+.link {
+  & + & {
+    color: red;
+  }
+
+  & & {
+    color: green;
+  }
+
+  && {
+    color: blue;
+  }
+
+  &, &ish {
+    color: cyan;
+  }
+}
+</pre>
+          </code>
+        </div>
+        <p>Выведет</p>
+        <div class="cod">
+          <code>
+<pre>
+.link + .link {
+  color: red;
+}
+.link .link {
+  color: green;
+}
+.link.link {
+  color: blue;
+}
+.link, .linkish {
+  color: cyan;
+}
+</pre>
+          </code>
+        </div>
     </section>
   </body>
 </html>
